@@ -4,7 +4,7 @@ from streamlit_chat import message
 import os
 from dotenv import load_dotenv
 
-openai.api_key = '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'
+openai.api_key = 'yourAPIkey'
 
 
 def generate_response(prompt):
