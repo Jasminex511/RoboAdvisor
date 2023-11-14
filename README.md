@@ -1,3 +1,3 @@
 # RoboAdvisor
 
-run python -m streamlit run main.py
+run `streamlit run main.py`
