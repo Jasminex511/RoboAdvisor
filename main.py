@@ -1,8 +1,5 @@
 import openai
 import streamlit as st
-from streamlit_chat import message
-import os
-from dotenv import load_dotenv
 from prompt import generate_cont_response, context
 
 openai.api_key = "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"
