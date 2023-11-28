@@ -5,19 +5,10 @@ import json
 import time
 import openpyxl
 from openai.error import RateLimitError
+from init import initialize_session_state
 from prompt import generate_cont_response, get_completion_from_messages, context, prompt
 
 openai.api_key = "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"
-
-
-# Function to initialize session state
-def initialize_session_state():
-    if not hasattr(st.session_state, 'generated'):
-        st.session_state.generated = []
-    if not hasattr(st.session_state, 'past'):
-        st.session_state.past = []
-    if not hasattr(st.session_state, 'completed'):
-        st.session_state.completed = False
 
 
 def chatbot_app():
