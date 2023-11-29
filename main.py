@@ -43,10 +43,7 @@ def chatbot_app():
     # when all questions are asked, transform chat-history to structured input
     if st.session_state.completed:
         prompt[0]['content'] += "Review text: " + " ".join([f"{c['role']}: {c['content']}" for c in context[1:]])
-        print(prompt)
-
         response = get_completion_from_messages(prompt)
-        print(response)
 
         # convert response into a xlsx file
         dict_data = json.loads(response)

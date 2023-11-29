@@ -31,7 +31,7 @@ prompt = [{'role': 'system', 'content': """
             The review is delimited with triple backticks. \
             Format your response as a JSON object with \
             "Money Budget", "Investment For", "Investment Plan", 
-            "Risk Tolerance" ,"Investment Period" , "Preferred Induestry" , "Industry Preference" ,"Emergency Money" as the keys.
+            "Risk Tolerance" ,"Investment Period" , "Preferred Induestry" , "Industry Preference" ,"Emergency Money", "Expected Return" as the keys.
             If the information isn't present, use "unknown" \
             as the value.
             
