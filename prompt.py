@@ -31,9 +31,8 @@ prompt = [{'role': 'system', 'content': """
             The review is delimited with triple backticks. \
             Format your response as a JSON object with \
             "Money Budget", "Investment For", "Investment Plan", 
-            "Risk Tolerance" ,"Investment Period" , "Preferred Induestry" , "Industry Preference" ,"Emergency Money", "Expected Return" as the keys.
-            If the information isn't present, use "unknown" \
-            as the value.
+            "Risk Tolerance" ,"Investment Period" , "Preferred Industry" , "Industry Preference" ,"Emergency Money", "Expected Return" as the keys.\
+            If the information isn't present, use "unknown" as the value.\
             
             For the "Risk Tolerance":Transform the outcome "very low" to "5% volatility",
                                      Transform the outcome "low" to "10% volatility",
@@ -41,11 +40,11 @@ prompt = [{'role': 'system', 'content': """
                                      Transform the outcome "high" to "20% volatility",
                                      Transform the outcome "very high" to "25% volatility",\
             
-            For the "Ivestment Priod":  Transform the outcome "1-3 years" to "1-3 years with Volatility Adjustment Factor is 0.7",
+            For the "Investment Period":  Transform the outcome "1-3 years" to "1-3 years with Volatility Adjustment Factor is 0.7",
                                           Transform the outcome "3-5 years" to "3-5 years with Volatility Adjustment Factor is 1.0",
                                           Transform the outcome "over 5 years" to "over 5 years with Volatility Adjustment Factor is 1.3",\
             
-            For the "Industry Peference": Transform the outcome "not interested" to "0% weight",
+            For the "Industry Preference": Transform the outcome "not interested" to "0% weight",
                                            Transform the outcome "a little interested" to "1%-10% weight",
                                            Transform the outcome "moderately interested" to "11%-30% weight",
                                            Transform the outcome "very interested" to "31%-50% weight",

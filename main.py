@@ -47,7 +47,7 @@ def chatbot_app():
 
         # convert response into a xlsx file
         dict_data = json.loads(response)
-        dict_data_list = {i: [dict_data[i]] for i in dict_data.keys()}
+        dict_data_list = {i: [dict_data[i].lower()] for i in dict_data.keys()}
         df = pd.DataFrame.from_dict(dict_data_list)
         df.to_excel("user_information.xlsx", index=False)
 
