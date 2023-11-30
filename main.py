@@ -13,13 +13,23 @@ openai.api_key = "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"
 
 def chatbot_app():
 
-    initialize_session_state()
-
     st.title("AI Chatbot")
 
-    user_input = st.text_input("You:")
+    # when all questions are asked, transform chat-history to structured input
+    if st.session_state.completed:
+        prompt[0]['content'] += "Review text: " + " ".join([f"{c['role']}: {c['content']}" for c in context[1:]])
+        response = get_completion_from_messages(prompt)
 
-    if user_input and not st.session_state.completed:
+        # convert response into a xlsx file
+        dict_data = json.loads(response)
+        dict_data_list = {i: [dict_data[i].lower()] for i in dict_data.keys()}
+        df = pd.DataFrame.from_dict(dict_data_list)
+        df.to_excel("user_information.xlsx", index=False)
+
+        return
+
+    else:
+        user_input = st.text_input("You:")
         retries = 0
         max_retries = 60
         while retries < max_retries:
@@ -40,17 +50,6 @@ def chatbot_app():
         if retries >= max_retries:
             st.error("Failed to get a response after several attempts. Please try again later.")
 
-    # when all questions are asked, transform chat-history to structured input
-    if st.session_state.completed:
-        prompt[0]['content'] += "Review text: " + " ".join([f"{c['role']}: {c['content']}" for c in context[1:]])
-        response = get_completion_from_messages(prompt)
-
-        # convert response into a xlsx file
-        dict_data = json.loads(response)
-        dict_data_list = {i: [dict_data[i].lower()] for i in dict_data.keys()}
-        df = pd.DataFrame.from_dict(dict_data_list)
-        df.to_excel("user_information.xlsx", index=False)
-
     if hasattr(st.session_state, 'generated') and st.session_state.generated:
         for i in range(len(st.session_state.generated) - 1, -1, -1):
             st.write(st.session_state.generated[i])
@@ -58,4 +57,6 @@ def chatbot_app():
 
 
 if __name__ == "__main__":
+    initialize_session_state()
     chatbot_app()
+
