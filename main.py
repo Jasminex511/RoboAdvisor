@@ -52,6 +52,7 @@ def chatbot_app():
                 response = get_completion_from_messages(prompt)
                 break
             except RateLimitError:
+                print("rate limit reached")
                 time.sleep(20)
 
         # convert response into a xlsx file
@@ -61,18 +62,15 @@ def chatbot_app():
         df.to_excel("user_information.xlsx", index=False)
         print("input ready")
 
-        df_best = None
-        df_weight = None
-
         while True:
-            if os.path.exists("OUTPUT_1_bestStrategyMetrics.csv") and os.path.exists("OUTPUT_3_weightsTable.csv.csv"):
+            if os.path.exists("OUTPUT_1_bestStrategyMetrics.csv") and os.path.exists("OUTPUT_3_weightsTable.csv"):
                 df_best = pd.read_csv("OUTPUT_1_bestStrategyMetrics.csv")
                 print("output 1 read")
-                df_weight = pd.read_csv("OUTPUT_3_weightsTable.csv.csv")
+                df_weight = pd.read_csv("OUTPUT_3_weightsTable.csv")
                 print("output 3 read")
                 break
             else:
-                print("files not generated")
+                print("files not generated yet")
                 time.sleep(20)
 
         results = {"return": {}, "weights": {}}
@@ -91,10 +89,16 @@ def chatbot_app():
                 response_result = get_completion_from_messages(result_prompt)
                 break
             except RateLimitError:
+                print("rate limit reached")
                 time.sleep(20)
 
         print(response_result)
         st.write(response_result)
+
+        os.remove("user_information.xlsx")
+        for f in os.listdir():
+            if f.startswith("OUTPUT"):
+                os.remove(f)
 
     if hasattr(st.session_state, 'generated') and st.session_state.generated:
         for i in range(len(st.session_state.generated) - 1, -1, -1):
