@@ -4,6 +4,7 @@ import pandas as pd
 import os
 import json
 import time
+from PIL import Image
 import openpyxl
 from openai.error import RateLimitError
 from init import initialize_session_state
@@ -27,10 +28,12 @@ def chatbot_app():
                     # gpt will use this sentence as part of the output when all questions are asked.
                     if "Thank you for providing all the necessary information." in output:
                         st.session_state.completed = True
+                        st.write(output)
                         print("conversation end")
-                    context.append({'role': 'assistant', 'content': output})
-                    st.session_state.generated.append(output)
-                    st.session_state.past.append(user_input)
+                    else:
+                        context.append({'role': 'assistant', 'content': output})
+                        st.session_state.generated.append(output)
+                        st.session_state.past.append(user_input)
                     break
             except RateLimitError:
                 # wait 20s and try again
@@ -66,8 +69,12 @@ def chatbot_app():
             if os.path.exists("OUTPUT_1_bestStrategyMetrics.csv") and os.path.exists("OUTPUT_3_weightsTable.csv"):
                 df_best = pd.read_csv("OUTPUT_1_bestStrategyMetrics.csv")
                 print("output 1 read")
+                image_strategy_plot = Image.open("OUTPUT_2_StrategyPlot.png")
+                print("output 2 read")
                 df_weight = pd.read_csv("OUTPUT_3_weightsTable.csv")
                 print("output 3 read")
+                image_asset_plot = Image.open("OUTPUT_4_assetAreaPlot.png")
+                print("output 4 read")
                 break
             else:
                 print("files not generated yet")
@@ -94,6 +101,8 @@ def chatbot_app():
 
         print(response_result)
         st.write(response_result)
+        st.image(image_strategy_plot, caption='Strategy')
+        st.image(image_asset_plot, caption='Asset Area')
 
         os.remove("user_information.xlsx")
         for f in os.listdir():
