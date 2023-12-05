@@ -17,6 +17,9 @@ def chatbot_app():
 
     st.title("AI Chatbot")
     user_input = st.text_input("You:")
+    result_placeholder = st.empty()
+    image1_placeholder = st.empty()
+    image2_placeholder = st.empty()
 
     if user_input and not st.session_state.completed:
         retries = 0
@@ -28,12 +31,10 @@ def chatbot_app():
                     # gpt will use this sentence as part of the output when all questions are asked.
                     if "Thank you for providing all the necessary information." in output:
                         st.session_state.completed = True
-                        st.write(output)
                         print("conversation end")
-                    else:
-                        context.append({'role': 'assistant', 'content': output})
-                        st.session_state.generated.append(output)
-                        st.session_state.past.append(user_input)
+                    context.append({'role': 'assistant', 'content': output})
+                    st.session_state.generated.append(output)
+                    st.session_state.past.append(user_input)
                     break
             except RateLimitError:
                 # wait 20s and try again
@@ -45,6 +46,11 @@ def chatbot_app():
                 break
         if retries >= max_retries:
             st.error("Failed to get a response after several attempts. Please try again later.")
+
+    if hasattr(st.session_state, 'generated') and st.session_state.generated:
+        for i in range(len(st.session_state.generated) - 1, -1, -1):
+            st.write(st.session_state.generated[i])
+            st.write(st.session_state.past[i])
 
     # when all questions are asked, transform chat-history to structured input
     if st.session_state.completed:
@@ -100,19 +106,14 @@ def chatbot_app():
                 time.sleep(20)
 
         print(response_result)
-        st.write(response_result)
-        st.image(image_strategy_plot, caption='Strategy')
-        st.image(image_asset_plot, caption='Asset Area')
+        result_placeholder.write(response_result)
+        image1_placeholder.image(image_strategy_plot, caption='Strategy')
+        image2_placeholder.image(image_asset_plot, caption='Asset Area')
 
         os.remove("user_information.xlsx")
         for f in os.listdir():
             if f.startswith("OUTPUT"):
                 os.remove(f)
-
-    if hasattr(st.session_state, 'generated') and st.session_state.generated:
-        for i in range(len(st.session_state.generated) - 1, -1, -1):
-            st.write(st.session_state.generated[i])
-            st.write(st.session_state.past[i])
 
 
 if __name__ == "__main__":

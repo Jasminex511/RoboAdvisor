@@ -17,7 +17,7 @@ context = [{'role':'system', 'content':"""
             Which of the following industries and markets do you have a preference for, such as :Healthcare, Finance, Real Estate, Consumer Discretionary, Consumer Staples, 
             Energy, Industrials, Materials, Communication Services, Utilities, International Markets, Emerging Markets, ESG, AI & Technology, Biotech.
             And what is the preference level for that interest? You can answer: not interested, a little interested, moderately interested, very interested, extremely interested. \
-            When you believe you asked all the questions you need, wrap it up with a response starting with 'Thank you for providing all the necessary information.'.\
+            When you believe and only when you believe you asked all the questions you need, wrap it up with a response starting with 'Thank you for providing all the necessary information.'.\
             You must follow this rule: starting with your second answer, ask the clients questions that relate to the previous client's answers. \
             """}]  # accumulate messages
 

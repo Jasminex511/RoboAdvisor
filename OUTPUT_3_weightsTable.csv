@@ -1,0 +1,29 @@
+Strategy,RebalanceDate,Asset,Weight
+Markowitz_Optimization,14-Jun-2023,Cash,-0
+Markowitz_Optimization,14-Jun-2023,SPY US Equity,0
+Markowitz_Optimization,14-Jun-2023,IWR US Equity,0
+Markowitz_Optimization,14-Jun-2023,IWM US Equity,0
+Markowitz_Optimization,14-Jun-2023,VGK US Equity,0
+Markowitz_Optimization,14-Jun-2023,AIA US Equity,0
+Markowitz_Optimization,14-Jun-2023,XLK US Equity,0
+Markowitz_Optimization,14-Jun-2023,XLV US Equity,0.31
+Markowitz_Optimization,14-Jun-2023,XLF US Equity,0
+Markowitz_Optimization,14-Jun-2023,XLRE US Equity,0
+Markowitz_Optimization,14-Jun-2023,XLY US Equity,0
+Markowitz_Optimization,14-Jun-2023,XLP US Equity,0
+Markowitz_Optimization,14-Jun-2023,XLE US Equity,0
+Markowitz_Optimization,14-Jun-2023,XLI US Equity,0
+Markowitz_Optimization,14-Jun-2023,XLB US Equity,0
+Markowitz_Optimization,14-Jun-2023,XLU US Equity,0
+Markowitz_Optimization,14-Jun-2023,GOVT US Equity,0
+Markowitz_Optimization,14-Jun-2023,LQD US Equity,0
+Markowitz_Optimization,14-Jun-2023,JNK US Equity,0
+Markowitz_Optimization,14-Jun-2023,GLD US Equity,0
+Markowitz_Optimization,14-Jun-2023,USO US Equity,0.29
+Markowitz_Optimization,14-Jun-2023,DBA US Equity,0
+Markowitz_Optimization,14-Jun-2023,ACWX US Equity,0
+Markowitz_Optimization,14-Jun-2023,EEM US Equity,0
+Markowitz_Optimization,14-Jun-2023,ESGU US Equity,0
+Markowitz_Optimization,14-Jun-2023,ROBO US Equity,0
+Markowitz_Optimization,14-Jun-2023,XBI US Equity,0
+Markowitz_Optimization,14-Jun-2023,SHV US Equity,0.4
