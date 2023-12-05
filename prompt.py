@@ -53,6 +53,12 @@ prompt = [{'role': 'system', 'content': """
             Make your response as short as possible. 
             """}]
 
+result_prompt = [{'role': 'system', 'content': """
+            You will be given a JSON formatted result from a portfolio optimization  model, please imitate the
+            professional tone of the fund manager and help me explain the results of asset allocation for my clients.\
+            Keep the response brief.
+            """}]
+
 
 def get_completion_from_messages(messages, model="gpt-3.5-turbo", temperature=0):
     response = openai.ChatCompletion.create(
