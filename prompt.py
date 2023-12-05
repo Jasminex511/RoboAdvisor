@@ -7,7 +7,7 @@ context = [{'role':'system', 'content':"""
             You can only ask one question at each time. \
             You need to ask simple questions, don't be too fussy. \
             Imagine that your customer base is college students. \
-            Here are some examples of questions, you can generate questions based on these: \
+            Here is a list of questions you need to ask, you can generate questions based on these: \
             What are your main financial goals? (Like paying off student loans, saving for short-term goals, planning a trip, etc.). \
             Do you want to have any savings or funds for emergency? How much? \
             What is your comfort level with investment risk? (very low,low, medium, high,very high) \
@@ -50,7 +50,17 @@ prompt = [{'role': 'system', 'content': """
                                            Transform the outcome "very interested" to "31%-50% weight",
                                            Transform the outcome "extremely interested" to "51%-100% weight",\
             
+            Use this example as the format for the response: "{"Money Budget": "5000", "Investment Period" : "1-3 years" , 
+            "Preferred Industry": "healthcare" , "Industry Preference": "31%-50% weight" ,"Emergency Money": "1000", 
+            "Expected Return": "30%"}"
+            
             Make your response as short as possible. 
+            """}]
+
+result_prompt = [{'role': 'system', 'content': """
+            You will be given a JSON formatted result from a portfolio optimization  model, please imitate the
+            professional tone of the fund manager and help me explain the results of asset allocation for my clients.\
+            Keep the response brief.
             """}]
 
 
