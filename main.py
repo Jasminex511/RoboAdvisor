@@ -10,7 +10,7 @@ from openai.error import RateLimitError
 from init import initialize_session_state
 from prompt import generate_cont_response, get_completion_from_messages, context, prompt, result_prompt
 
-openai.api_key = "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"
+openai.api_key = "YOUR-API-KEY"
 
 
 def chatbot_app():
