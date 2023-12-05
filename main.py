@@ -38,7 +38,7 @@ def chatbot_app():
                 time.sleep(20)
                 retries += 1
             except Exception as e:
-                st.error(f"An unexpected error occurred: {e}")
+                print(f"An unexpected error occurred: {e}")
                 break
         if retries >= max_retries:
             st.error("Failed to get a response after several attempts. Please try again later.")
