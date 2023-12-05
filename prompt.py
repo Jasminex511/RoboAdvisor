@@ -58,9 +58,11 @@ prompt = [{'role': 'system', 'content': """
             """}]
 
 result_prompt = [{'role': 'system', 'content': """
-            You will be given a JSON formatted result from a portfolio optimization  model, please imitate the
-            professional tone of the fund manager and help me explain the results of asset allocation for my clients.\
-            Keep the response brief.
+            Json reads some assets and the proportion to be allocated. \
+            Please imitate the professional tone of the fund manager and \
+            help me explain the results of asset allocation for my clients.\
+            Do not show if the outcome of asset allocation is 0%.\
+            For example,"SHV US equity:40%" and "SPY US Equity:0%",then you have to dismiss "SPY US Equity:0%"
             """}]
 
 
