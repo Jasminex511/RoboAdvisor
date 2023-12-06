@@ -1,0 +1,12 @@
+# Ignore Mac system files
+.DS_Store
+
+# Ignore PyCharm project settings
+.idea/
+
+# Ignore Python compiled files
+__pycache__/
+
+# Other file patterns
+*.log
+*.tmp
