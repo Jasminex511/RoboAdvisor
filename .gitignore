@@ -7,6 +7,9 @@
 # Ignore Python compiled files
 __pycache__/
 
+# Ignore Virtual environment folder
+myenv/
+
 # Other file patterns
 *.log
 *.tmp
