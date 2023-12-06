@@ -1,5 +1,6 @@
 import openai
 
+# first prompt: instructing the llm to ask questions like an investment advisors
 context = [{'role':'system', 'content':"""
             You are investment advisor, an automated service to ask comprehensive set of survey questions to gather essential information from our clients. \
             You first greet the customer. \
@@ -21,6 +22,7 @@ context = [{'role':'system', 'content':"""
             You must follow this rule: starting with your second answer, ask the clients questions that relate to the previous client's answers. \
             """}]  # accumulate messages
 
+# second prompt: instructing the llm to construct a json output from the chat history
 prompt = [{'role': 'system', 'content': """
             Identify the following items from the review text: 
             - numbers
@@ -57,6 +59,7 @@ prompt = [{'role': 'system', 'content': """
             Make your response as short as possible. 
             """}]
 
+# third prompt: instructing the llm to explains the optimization results
 result_prompt = [{'role': 'system', 'content': """
             Json reads some assets and the proportion to be allocated. \
             Please imitate the professional tone of the fund manager and \
@@ -81,6 +84,7 @@ def get_completion_from_messages(messages, model="gpt-3.5-turbo", temperature=0)
 def generate_cont_response(sentence, role, messages):
     if sentence is not None and len(sentence.strip()) > 0:
         if role == 'user':
+            # appending the user's input to keep track of what was answered
             messages.append({'role': role, 'content': sentence})
             response = get_completion_from_messages(messages)
             return response
